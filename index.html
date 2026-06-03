@@ -72,6 +72,29 @@
       grid-template-columns: 1fr 1fr;
       gap: 1.25rem;
     }
+    .table-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin: 0.5rem 0 1.25rem;
+    }
+    .table-grid h3 {
+      margin-top: 0;
+    }
+    .candidate-table.tub-table th,
+    .candidate-table.tub-table td {
+      color: var(--text);
+    }
+    .candidate-table.tub-table th {
+      color: var(--tub);
+    }
+    .candidate-table.jones-table th,
+    .candidate-table.jones-table td {
+      color: var(--text);
+    }
+    .candidate-table.jones-table th {
+      color: var(--jones);
+    }
     .legend-pills {
       display: flex;
       gap: 1rem;
@@ -137,7 +160,7 @@
       padding: 1rem;
     }
     @media (max-width: 800px) {
-      .chart-grid { grid-template-columns: 1fr; }
+      .chart-grid, .table-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -191,8 +214,19 @@
   <h2>Speech comparison</h2>
 
   <h3>Topics — rate per 1,000 words</h3>
-  <p class="chart-note">Same topic taxonomy for both candidates; sorted by higher of the two rates. Jones charts use Tuberville's axis scale within each metric so bar heights are directly comparable.</p>
-  <div class="chart-wrap tall"><canvas id="compare-topics-rate"></canvas></div>
+  <p class="chart-note">Same topic taxonomy for both candidates; each table sorted descending by that candidate's /1k rate.</p>
+  
+  <div class="table-grid">
+    <div class="candidate-table tub-table">
+      <h3>Tuberville — topics</h3>
+      <table><thead><tr><th>Topic</th><th>/1k</th></tr></thead><tbody><tr><td>Election integrity / SAVE Act</td><td>9.90</td></tr><tr><td>Democrats / partisan conflict</td><td>7.32</td></tr><tr><td>Immigration / ICE / border</td><td>4.43</td></tr><tr><td>Trump / White House agenda</td><td>4.02</td></tr><tr><td>Government shutdown / DHS funding</td><td>3.54</td></tr><tr><td>Military / defense</td><td>1.53</td></tr><tr><td>Iran / Middle East</td><td>1.29</td></tr><tr><td>Economy / spending</td><td>1.29</td></tr><tr><td>DOJ / law &amp; order</td><td>1.13</td></tr><tr><td>Alabama / governor race</td><td>1.05</td></tr></tbody></table>
+    </div>
+    <div class="candidate-table jones-table">
+      <h3>Jones — topics</h3>
+      <table><thead><tr><th>Topic</th><th>/1k</th></tr></thead><tbody><tr><td>Alabama / governor race</td><td>7.49</td></tr><tr><td>Election integrity / SAVE Act</td><td>4.30</td></tr><tr><td>Immigration / ICE / border</td><td>3.67</td></tr><tr><td>Democrats / partisan conflict</td><td>3.10</td></tr><tr><td>DOJ / law &amp; order</td><td>1.39</td></tr><tr><td>Trump / White House agenda</td><td>1.15</td></tr><tr><td>Economy / spending</td><td>1.15</td></tr><tr><td>Government shutdown / DHS funding</td><td>0.31</td></tr><tr><td>Military / defense</td><td>0.16</td></tr><tr><td>Islam / Sharia / radicalism</td><td>0.16</td></tr></tbody></table>
+    </div>
+  </div>
+
 
   <div class="chart-grid">
     <div>
@@ -222,8 +256,6 @@
     <table><thead><tr><th>Tub — Word</th><th>Tub /1k</th><th>Jones — Word</th><th>Jones /1k</th></tr></thead><tbody><tr><td>senate</td><td>5.71</td><td>alabama</td><td>4.07</td></tr><tr><td>country</td><td>4.67</td><td>state</td><td>3.89</td></tr><tr><td>democrats</td><td>4.43</td><td>folks</td><td>2.83</td></tr><tr><td>american</td><td>3.14</td><td>democrats</td><td>2.34</td></tr><tr><td>trump</td><td>3.06</td><td>senate</td><td>1.33</td></tr><tr><td>republicans</td><td>2.41</td><td>governor</td><td>1.28</td></tr><tr><td>vote</td><td>2.33</td><td>care</td><td>1.28</td></tr><tr><td>end</td><td>2.33</td><td>vote</td><td>1.21</td></tr><tr><td>work</td><td>1.85</td><td>health</td><td>1.17</td></tr><tr><td>america</td><td>1.85</td><td>birmingham</td><td>1.17</td></tr></tbody></table>
     <h4>Most-named</h4>
     <table><thead><tr><th>Tub — Name</th><th>Tub /1k</th><th>Jones — Name</th><th>Jones /1k</th></tr></thead><tbody><tr><td>Senate</td><td>5.71</td><td>Alabama</td><td>4.23</td></tr><tr><td>Democrats</td><td>4.67</td><td>Democrats</td><td>2.36</td></tr><tr><td>Trump</td><td>3.06</td><td>Senate</td><td>1.33</td></tr><tr><td>American people</td><td>2.66</td><td>Republicans</td><td>0.94</td></tr><tr><td>Republicans</td><td>2.41</td><td>Trump</td><td>0.67</td></tr><tr><td>House</td><td>1.13</td><td>Tuberville</td><td>0.54</td></tr><tr><td>Save America Act</td><td>1.13</td><td>House</td><td>0.52</td></tr><tr><td>Biden</td><td>0.89</td><td>American people</td><td>0.04</td></tr><tr><td>Schumer</td><td>0.56</td><td>Biden</td><td>0.02</td></tr><tr><td>Alabama</td><td>0.56</td><td>Roy Moore</td><td>0.02</td></tr></tbody></table>
-    <h4>Topics (each candidate's rank order)</h4>
-    <table><thead><tr><th>Tub — Topic</th><th>Tub /1k</th><th>Jones — Topic</th><th>Jones /1k</th></tr></thead><tbody><tr><td>Election integrity / SAVE Act</td><td>9.90</td><td>Alabama / governor race</td><td>7.49</td></tr><tr><td>Democrats / partisan conflict</td><td>7.32</td><td>Election integrity / SAVE Act</td><td>4.30</td></tr><tr><td>Immigration / ICE / border</td><td>4.43</td><td>Immigration / ICE / border</td><td>3.67</td></tr><tr><td>Trump / White House agenda</td><td>4.02</td><td>Democrats / partisan conflict</td><td>3.10</td></tr><tr><td>Government shutdown / DHS funding</td><td>3.54</td><td>DOJ / law &amp; order</td><td>1.39</td></tr><tr><td>Military / defense</td><td>1.53</td><td>Trump / White House agenda</td><td>1.15</td></tr><tr><td>Iran / Middle East</td><td>1.29</td><td>Economy / spending</td><td>1.15</td></tr><tr><td>Economy / spending</td><td>1.29</td><td>Government shutdown / DHS funding</td><td>0.31</td></tr><tr><td>DOJ / law &amp; order</td><td>1.13</td><td>Military / defense</td><td>0.16</td></tr><tr><td>Alabama / governor race</td><td>1.05</td><td>Islam / Sharia / radicalism</td><td>0.16</td></tr></tbody></table>
   </details>
 </section>
 
@@ -232,7 +264,7 @@
     Charts use per-1,000-word rates. Jones word and name charts share Tuberville's y-axis scale for direct comparison.
   </footer>
 
-  <script id="chart-data" type="application/json">{"topics": [{"topic": "Election integrity / SAVE Act", "tub": 9.9, "jones": 4.3, "tub_share": 83.3, "jones_share": 90.0, "sort": 9.9}, {"topic": "Alabama / governor race", "tub": 1.05, "jones": 7.49, "tub_share": 44.4, "jones_share": 100.0, "sort": 7.49}, {"topic": "Democrats / partisan conflict", "tub": 7.32, "jones": 3.1, "tub_share": 94.4, "jones_share": 100.0, "sort": 7.32}, {"topic": "Immigration / ICE / border", "tub": 4.43, "jones": 3.67, "tub_share": 83.3, "jones_share": 100.0, "sort": 4.43}, {"topic": "Trump / White House agenda", "tub": 4.02, "jones": 1.15, "tub_share": 88.9, "jones_share": 90.0, "sort": 4.02}, {"topic": "Government shutdown / DHS funding", "tub": 3.54, "jones": 0.31, "tub_share": 77.8, "jones_share": 70.0, "sort": 3.54}, {"topic": "Military / defense", "tub": 1.53, "jones": 0.16, "tub_share": 38.9, "jones_share": 40.0, "sort": 1.53}, {"topic": "DOJ / law & order", "tub": 1.13, "jones": 1.39, "tub_share": 44.4, "jones_share": 60.0, "sort": 1.39}, {"topic": "Iran / Middle East", "tub": 1.29, "jones": 0.0, "tub_share": 11.1, "jones_share": 0.0, "sort": 1.29}, {"topic": "Economy / spending", "tub": 1.29, "jones": 1.15, "tub_share": 38.9, "jones_share": 70.0, "sort": 1.29}], "tubWords": [["senate", 5.71], ["country", 4.67], ["democrats", 4.43], ["american", 3.14], ["trump", 3.06], ["republicans", 2.41], ["vote", 2.33], ["end", 2.33], ["work", 1.85], ["america", 1.85]], "jonesWords": [["alabama", 4.07], ["state", 3.89], ["folks", 2.83], ["democrats", 2.34], ["senate", 1.33], ["governor", 1.28], ["care", 1.28], ["vote", 1.21], ["health", 1.17], ["birmingham", 1.17]], "tubNames": [["Senate", 5.71], ["Democrats", 4.67], ["Trump", 3.06], ["American people", 2.66], ["Republicans", 2.41], ["House", 1.13], ["Save America Act", 1.13], ["Biden", 0.89], ["Schumer", 0.56], ["Alabama", 0.56]], "jonesNames": [["Alabama", 4.23], ["Democrats", 2.36], ["Senate", 1.33], ["Republicans", 0.94], ["Trump", 0.67], ["Tuberville", 0.54], ["House", 0.52], ["American people", 0.04], ["Biden", 0.02], ["Roy Moore", 0.02]], "corpus": {"tubWords": 12429, "jonesWords": 44470, "tubVideos": 18, "jonesVideos": 10, "tubMedian": 716, "jonesMedian": 2439}}</script>
+  <script id="chart-data" type="application/json">{"tubWords": [["senate", 5.71], ["country", 4.67], ["democrats", 4.43], ["american", 3.14], ["trump", 3.06], ["republicans", 2.41], ["vote", 2.33], ["end", 2.33], ["work", 1.85], ["america", 1.85]], "jonesWords": [["alabama", 4.07], ["state", 3.89], ["folks", 2.83], ["democrats", 2.34], ["senate", 1.33], ["governor", 1.28], ["care", 1.28], ["vote", 1.21], ["health", 1.17], ["birmingham", 1.17]], "tubNames": [["Senate", 5.71], ["Democrats", 4.67], ["Trump", 3.06], ["American people", 2.66], ["Republicans", 2.41], ["House", 1.13], ["Save America Act", 1.13], ["Biden", 0.89], ["Schumer", 0.56], ["Alabama", 0.56]], "jonesNames": [["Alabama", 4.23], ["Democrats", 2.36], ["Senate", 1.33], ["Republicans", 0.94], ["Trump", 0.67], ["Tuberville", 0.54], ["House", 0.52], ["American people", 0.04], ["Biden", 0.02], ["Roy Moore", 0.02]], "corpus": {"tubWords": 12429, "jonesWords": 44470, "tubVideos": 18, "jonesVideos": 10, "tubMedian": 716, "jonesMedian": 2439}}</script>
   <script>
     const DATA = JSON.parse(document.getElementById('chart-data').textContent);
     const TUB = '#b91c1c';
@@ -247,10 +279,6 @@
       return [...items].sort((a, b) => b[1] - a[1]);
     }
 
-    function sortDescTopics(items) {
-      return [...items].sort((a, b) => b.sort - a.sort);
-    }
-
     function maxRate(...lists) {
       return Math.max(0, ...lists.flat().map(([, v]) => v));
     }
@@ -259,40 +287,6 @@
       const peak = maxRate(tubItems) || maxRate(jonesItems);
       if (peak <= 0) return 1;
       return Math.ceil(peak);
-    }
-
-    function paddedMax(value) {
-      if (value <= 0) return 1;
-      return Math.ceil(value * 1.12 * 10) / 10;
-    }
-
-    function hbar(id, labels, datasets, xTitle, xMax) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      new Chart(el, {
-        type: 'bar',
-        data: { labels, datasets },
-        options: {
-          indexAxis: 'y',
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'bottom' },
-            tooltip: {
-              callbacks: {
-                label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.x.toFixed(2)}`
-              }
-            }
-          },
-          scales: {
-            x: {
-              title: { display: !!xTitle, text: xTitle || '' },
-              beginAtZero: true,
-              max: xMax,
-            }
-          }
-        }
-      });
     }
 
     function verticalBar(id, items, color, label, yTitle, yMax) {
@@ -339,19 +333,9 @@
     }
 
     function renderCharts(block) {
-      const topics = sortDescTopics(block.topics);
-      const topicLabels = topics.map(t => t.topic);
-      const topicMax = paddedMax(maxRate(
-        topics.map(t => ['tub', t.tub]),
-        topics.map(t => ['jones', t.jones]),
-      ));
       const wordsMax = tubPairedScale(block.tubWords, block.jonesWords);
       const namesMax = tubPairedScale(block.tubNames, block.jonesNames);
 
-      hbar('compare-topics-rate', topicLabels, [
-        { label: 'Tuberville', data: topics.map(t => t.tub), backgroundColor: TUB_LIGHT, borderRadius: 4 },
-        { label: 'Jones', data: topics.map(t => t.jones), backgroundColor: JONES_LIGHT, borderRadius: 4 },
-      ], 'mentions per 1,000 words', topicMax);
       verticalBar('compare-tub-words', block.tubWords, TUB_LIGHT, 'Tuberville', 'per 1,000 words', wordsMax);
       verticalBar('compare-jones-words', block.jonesWords, JONES_LIGHT, 'Jones', 'per 1,000 words', wordsMax);
       verticalBar('compare-tub-names', block.tubNames, TUB_LIGHT, 'Tuberville', 'per 1,000 words', namesMax);
