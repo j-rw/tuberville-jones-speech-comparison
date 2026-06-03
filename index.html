@@ -223,7 +223,7 @@
 
   </main>
   <footer>
-    Charts use per-1,000-word rates. Words and names use grouped vertical bars on a shared term list.
+    Charts use per-1,000-word rates. Word and name charts are separate vertical bars per candidate.
   </footer>
 
   <script id="chart-data" type="application/json">{"topics": [{"topic": "Election integrity / SAVE Act", "tub": 9.9, "jones": 4.3, "tub_share": 83.3, "jones_share": 90.0, "sort": 9.9}, {"topic": "Alabama / governor race", "tub": 1.05, "jones": 7.49, "tub_share": 44.4, "jones_share": 100.0, "sort": 7.49}, {"topic": "Democrats / partisan conflict", "tub": 7.32, "jones": 3.1, "tub_share": 94.4, "jones_share": 100.0, "sort": 7.32}, {"topic": "Immigration / ICE / border", "tub": 4.43, "jones": 3.67, "tub_share": 83.3, "jones_share": 100.0, "sort": 4.43}, {"topic": "Trump / White House agenda", "tub": 4.02, "jones": 1.15, "tub_share": 88.9, "jones_share": 90.0, "sort": 4.02}, {"topic": "Government shutdown / DHS funding", "tub": 3.54, "jones": 0.31, "tub_share": 77.8, "jones_share": 70.0, "sort": 3.54}, {"topic": "Military / defense", "tub": 1.53, "jones": 0.16, "tub_share": 38.9, "jones_share": 40.0, "sort": 1.53}, {"topic": "DOJ / law & order", "tub": 1.13, "jones": 1.39, "tub_share": 44.4, "jones_share": 60.0, "sort": 1.39}, {"topic": "Iran / Middle East", "tub": 1.29, "jones": 0.0, "tub_share": 11.1, "jones_share": 0.0, "sort": 1.29}, {"topic": "Economy / spending", "tub": 1.29, "jones": 1.15, "tub_share": 38.9, "jones_share": 70.0, "sort": 1.29}], "tubWords": [["senate", 5.71], ["country", 4.67], ["democrats", 4.43], ["trump", 3.06], ["american", 2.49], ["republicans", 2.41], ["vote", 2.33], ["end", 2.33], ["work", 1.85], ["america", 1.85]], "jonesWords": [["alabama", 4.07], ["state", 3.89], ["folks", 2.83], ["democrats", 2.34], ["senate", 1.33], ["governor", 1.28], ["care", 1.28], ["vote", 1.21], ["health", 1.17], ["birmingham", 1.17]], "tubNames": [["Senate", 5.71], ["Democrats", 4.67], ["Trump", 3.06], ["Republicans", 2.41], ["American people", 2.01], ["House", 1.13], ["Save America Act", 1.13], ["Biden", 0.89], ["Americans", 0.64], ["Schumer", 0.56]], "jonesNames": [["Alabama", 4.23], ["Democrats", 2.36], ["Senate", 1.33], ["Republicans", 0.94], ["Trump", 0.67], ["Tuberville", 0.54], ["House", 0.52], ["Doug Jones", 0.07], ["American people", 0.04], ["Biden", 0.02]], "corpus": {"tubWords": 12429, "jonesWords": 44470, "tubVideos": 18, "jonesVideos": 10, "tubMedian": 716, "jonesMedian": 2439}}</script>
@@ -236,6 +236,14 @@
 
     Chart.defaults.font.family = 'Georgia, "Times New Roman", serif';
     Chart.defaults.color = '#5c5c5c';
+
+    function sortDescPairs(items) {
+      return [...items].sort((a, b) => b[1] - a[1]);
+    }
+
+    function sortDescTopics(items) {
+      return [...items].sort((a, b) => b.sort - a.sort);
+    }
 
     function hbar(id, labels, datasets, xTitle) {
       const el = document.getElementById(id);
@@ -267,14 +275,15 @@
 
     function verticalBar(id, items, color, label, yTitle) {
       const el = document.getElementById(id);
-      if (!el || !items.length) return;
+      const sorted = sortDescPairs(items);
+      if (!el || !sorted.length) return;
       new Chart(el, {
         type: 'bar',
         data: {
-          labels: items.map(([k]) => k),
+          labels: sorted.map(([k]) => k),
           datasets: [{
             label,
-            data: items.map(([, v]) => v),
+            data: sorted.map(([, v]) => v),
             backgroundColor: color,
             borderRadius: { topLeft: 6, topRight: 6 },
           }],
@@ -306,11 +315,11 @@
     }
 
     function renderCharts(block) {
-      const topics = block.topics;
-      const topicLabels = [...topics].reverse().map(t => t.topic);
+      const topics = sortDescTopics(block.topics);
+      const topicLabels = topics.map(t => t.topic);
       hbar('compare-topics-rate', topicLabels, [
-        { label: 'Tuberville', data: [...topics].reverse().map(t => t.tub), backgroundColor: TUB_LIGHT, borderRadius: 4 },
-        { label: 'Jones', data: [...topics].reverse().map(t => t.jones), backgroundColor: JONES_LIGHT, borderRadius: 4 },
+        { label: 'Tuberville', data: topics.map(t => t.tub), backgroundColor: TUB_LIGHT, borderRadius: 4 },
+        { label: 'Jones', data: topics.map(t => t.jones), backgroundColor: JONES_LIGHT, borderRadius: 4 },
       ], 'mentions per 1,000 words');
       verticalBar('compare-tub-words', block.tubWords, TUB_LIGHT, 'Tuberville', 'per 1,000 words');
       verticalBar('compare-jones-words', block.jonesWords, JONES_LIGHT, 'Jones', 'per 1,000 words');
