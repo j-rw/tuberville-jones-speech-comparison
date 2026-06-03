@@ -134,6 +134,12 @@
       letter-spacing: 0.03em;
     }
     .stat strong { font-size: 1.375rem; font-weight: 700; }
+    .diversity-stats {
+      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      max-width: 28rem;
+    }
+    .tub-stat strong { color: var(--tub); }
+    .jones-stat strong { color: var(--jones); }
     .chart-wrap {
       position: relative;
       height: 280px;
@@ -264,7 +270,7 @@
   <header>
     <h1>Tuberville vs Doug Jones</h1>
     <p>Speech comparison from YouTube interview transcripts — shared date window 2025-06-03 through present.</p>
-    <p class="meta">Generated 2026-06-03 22:58 UTC</p>
+    <p class="meta">Generated 2026-06-03 23:16 UTC</p>
     <div class="legend-pills">
       <span class="pill"><span class="swatch tub"></span> Tuberville</span>
       <span class="pill"><span class="swatch jones"></span> Doug Jones</span>
@@ -275,7 +281,7 @@
       <details class="meta-section">
         <summary>Methodology &amp; corpus size — Tuberville 12,429 words / 18 videos · Jones 44,470 words / 10 videos</summary>
         <h2>Methodology</h2>
-        <ul class="method"><li>All topic/word/name comparisons use per-1,000-word rates.</li><li>Top-word tables exclude contractions and spoken fillers (it&#x27;s, don&#x27;t, mean, etc.).</li><li>Each candidate&#x27;s frequency tables are sorted descending by that candidate&#x27;s /1k rate.</li><li>video_share_pct = % of appearances in window mentioning the topic.</li><li>rate_per_1000 = count / total_words * 1000</li></ul>
+        <ul class="method"><li>All topic/word/name comparisons use per-1,000-word rates.</li><li>Top-word tables exclude contractions and spoken fillers (it&#x27;s, don&#x27;t, mean, etc.).</li><li>Each candidate&#x27;s frequency tables are sorted descending by that candidate&#x27;s /1k rate.</li><li>video_share_pct = % of appearances in window mentioning the topic.</li><li>rate_per_1000 = count / total_words * 1000</li><li>Per video: count unique substantive word types, divide by that video&#x27;s total words, multiply by 1,000. Candidate score = median across appearances (one vote per video).</li></ul>
         <h2>Corpus size</h2>
         <p class="chart-note">Jones interviews run longer on average; rates (/1k) normalize for total word count.</p>
         <div class="stats">
@@ -322,6 +328,28 @@
       <table><thead><tr><th>Rank</th><th>Topic</th><th>/1k</th></tr></thead><tbody><tr><td>1</td><td>Alabama / governor race</td><td>7.49</td></tr><tr><td>2</td><td>Election integrity / SAVE Act</td><td>4.30</td></tr><tr><td>3</td><td>Immigration / ICE / border</td><td>3.67</td></tr><tr><td>4</td><td>Democrats / partisan conflict</td><td>3.10</td></tr><tr><td>5</td><td>DOJ / law &amp; order</td><td>1.39</td></tr><tr><td>6</td><td>Trump / White House agenda</td><td>1.15</td></tr><tr><td>7</td><td>Economy / spending</td><td>1.15</td></tr><tr><td>8</td><td>Government shutdown / DHS funding</td><td>0.31</td></tr><tr><td>9</td><td>Military / defense</td><td>0.16</td></tr><tr><td>10</td><td>Islam / Sharia / radicalism</td><td>0.16</td></tr></tbody></table>
     </div>
   </div>
+
+
+  
+  <h3>Lexical diversity — unique substantive types per 1,000 words</h3>
+  <p class="chart-note">One score per appearance: unique substantive word types ÷ that video's total words × 1,000. Candidate summary = median across videos (not pooled corpus).</p>
+  <div class="stats diversity-stats">
+    <div class="stat tub-stat"><span>Tuberville median /1k</span><strong>219.5</strong></div>
+    <div class="stat jones-stat"><span>Jones median /1k</span><strong>166.2</strong></div>
+  </div>
+  <details class="data-table">
+    <summary>Per-video diversity scores</summary>
+    <div class="table-grid">
+      <div class="candidate-table tub-table">
+        <h4>Tuberville</h4>
+        <table><thead><tr><th>Date</th><th>Words</th><th>Unique types</th><th>/1k</th><th>Title</th></tr></thead><tbody><tr><td>2025-10-08</td><td>477</td><td>125</td><td>262.1</td><td>We have hit tip of iceberg with Jack Smith whistleblowers: Tommy Tuberville | Ne</td></tr><tr><td>2025-09-15</td><td>313</td><td>78</td><td>249.2</td><td>Charlie Kirk taught values very different than a lot of people: Tommy Tuberville</td></tr><tr><td>2025-10-23</td><td>1057</td><td>260</td><td>246.0</td><td>Senator Tuberville Joins Newsmax to Discuss Government Shutdown Strategy</td></tr><tr><td>2025-08-01</td><td>530</td><td>130</td><td>245.3</td><td>&#x27;Dead wrong&#x27; for Sen. Hawley to punish everyone: Sen. Tommy Tuberville | Nationa</td></tr><tr><td>2025-10-08</td><td>467</td><td>110</td><td>235.5</td><td>Senator Tuberville Joins Newsline on Newsmax to Discuss Ongoing Shutdown and Ope</td></tr><tr><td>2025-11-18</td><td>344</td><td>78</td><td>226.7</td><td>Put Arctic Frost perpetrators in jail: Tommy Tuberville | National Report</td></tr><tr><td>2025-10-23</td><td>446</td><td>101</td><td>226.5</td><td>Fetterman&#x27;s the only Democrat with any common sense: Sen. Tommy Tuberville | New</td></tr><tr><td>2025-07-22</td><td>840</td><td>185</td><td>220.2</td><td>Senator Tuberville to Newsmax: Senate will &quot;Stay up Here and Work&quot; to Pass Presi</td></tr><tr><td>2026-06-01</td><td>777</td><td>171</td><td>220.1</td><td>Tuberville: Democrats have absolutely lost their minds | American Agenda</td></tr><tr><td>2025-11-04</td><td>795</td><td>174</td><td>218.9</td><td>I feel bad for the American people over shutdown: Tommy Tuberville | American Ag</td></tr><tr><td>2025-12-16</td><td>727</td><td>158</td><td>217.3</td><td>Sen.Tuberville Joins Newsmax to Discuss Latest on Brown University Shooting and </td></tr><tr><td>2026-02-25</td><td>729</td><td>156</td><td>214.0</td><td>Trump had so many good things to talk about: Tommy Tuberville | American Agenda</td></tr><tr><td>2025-11-04</td><td>794</td><td>168</td><td>211.6</td><td>Senator Tuberville Joins Newsmax to Discuss Shutdown and Auburn TPUSA Event</td></tr><tr><td>2026-01-29</td><td>1299</td><td>272</td><td>209.4</td><td>Tuberville Joins Newsmax to Discuss ICE agents, FBI at Fulton County, and the Su</td></tr><tr><td>2026-04-14</td><td>465</td><td>97</td><td>208.6</td><td>Tommy Tuberville: Somehow, we have to fund SAVE America Act | Ed Henry The Big T</td></tr><tr><td>2026-06-01</td><td>1063</td><td>215</td><td>202.3</td><td>Senator Tuberville Joins American Agenda on Newsmax to Discuss Graham Platner Ca</td></tr><tr><td>2026-04-14</td><td>706</td><td>140</td><td>198.3</td><td>Senator Tuberville Joins Ed Henry on Newsmax to Discuss Reconciliation Bill Plan</td></tr><tr><td>2026-03-24</td><td>600</td><td>101</td><td>168.3</td><td>&#x27;Get these idiots out&#x27;: Sen. Tuberville reacts to Dem hysteria, politics on SAVE</td></tr></tbody></table>
+      </div>
+      <div class="candidate-table jones-table">
+        <h4>Jones</h4>
+        <table><thead><tr><th>Date</th><th>Words</th><th>Unique types</th><th>/1k</th><th>Title</th></tr></thead><tbody><tr><td>2026-04-29</td><td>639</td><td>209</td><td>327.1</td><td>One-on-One with Former U.S. Senator Doug Jones on Alabama’s Future</td></tr><tr><td>2026-06-01</td><td>1152</td><td>246</td><td>213.5</td><td>Doug Jones on MSNOW: Why Alabama Is in Play in 2026</td></tr><tr><td>2025-12-01</td><td>1738</td><td>344</td><td>197.9</td><td>Democrats Must Take On ‘Corruption’ | Former Senator Doug Jones</td></tr><tr><td>2026-04-15</td><td>1650</td><td>304</td><td>184.2</td><td>Doug Jones Candidate for Governor of Alabama &amp; Former Senator Speaks on Maternit</td></tr><tr><td>2026-05-12</td><td>1822</td><td>311</td><td>170.7</td><td>Meet the candidates for Alabama governor: Doug Jones</td></tr><tr><td>2025-09-15</td><td>5222</td><td>845</td><td>161.8</td><td>American Conversations: Senator Doug Jones</td></tr><tr><td>2026-01-23</td><td>3056</td><td>467</td><td>152.8</td><td>Doug Jones Exposes Tuberville’s ‘Indefensible’ Record. Now He Wants to Be Alabam</td></tr><tr><td>2025-07-21</td><td>5528</td><td>708</td><td>128.1</td><td>INTERVIEW: How Can Democrats Win Back Rural Voters? (w/ Doug Jones)</td></tr><tr><td>2026-04-10</td><td>12507</td><td>1473</td><td>117.8</td><td>Doug Jones for Alabama Governor Primary Interview</td></tr><tr><td>2025-12-19</td><td>11156</td><td>1203</td><td>107.8</td><td>The Doug Jones Interview: Rematch vs. Tuberville, Fixing the Lottery &amp; ADC Drama</td></tr></tbody></table>
+      </div>
+    </div>
+  </details>
 
 
   <div class="chart-grid">
