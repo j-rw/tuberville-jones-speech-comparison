@@ -270,7 +270,7 @@
   <header>
     <h1>Tuberville vs Doug Jones</h1>
     <p>Speech comparison from YouTube interview transcripts — shared date window 2025-06-03 through present.</p>
-    <p class="meta">Generated 2026-06-03 23:32 UTC</p>
+    <p class="meta">Generated 2026-06-03 23:52 UTC</p>
     <div class="legend-pills">
       <span class="pill"><span class="swatch tub"></span> Tuberville</span>
       <span class="pill"><span class="swatch jones"></span> Doug Jones</span>
@@ -372,41 +372,29 @@
 
   <div class="chart-grid">
     <div>
-      <h3>Tuberville — top substantive words</h3>
-      <div class="chart-wrap compare"><canvas id="compare-tub-words"></canvas></div>
+      <h3>Tuberville — top terms</h3>
+      <p class="chart-note">Substantive words and named entities combined; top 10 by /1k.</p>
+      <div class="chart-wrap compare"><canvas id="compare-tub-top"></canvas></div>
     </div>
     <div>
-      <h3>Jones — top substantive words</h3>
-      <div class="chart-wrap compare"><canvas id="compare-jones-words"></canvas></div>
-    </div>
-  </div>
-
-  <div class="chart-grid">
-    <div>
-      <h3>Tuberville — most named</h3>
-      <div class="chart-wrap compare"><canvas id="compare-tub-names"></canvas></div>
-    </div>
-    <div>
-      <h3>Jones — most named</h3>
-      <div class="chart-wrap compare"><canvas id="compare-jones-names"></canvas></div>
+      <h3>Jones — top terms</h3>
+      <p class="chart-note">Substantive words and named entities combined; top 10 by /1k.</p>
+      <div class="chart-wrap compare"><canvas id="compare-jones-top"></canvas></div>
     </div>
   </div>
 
   <details class="data-table">
     <summary>Table view (top 10)</summary>
-    <h4>Top substantive words</h4>
-    <table><thead><tr><th>Tub — Word</th><th>Tub /1k</th><th>Jones — Word</th><th>Jones /1k</th></tr></thead><tbody><tr><td>senate</td><td>5.71</td><td>alabama</td><td>4.07</td></tr><tr><td>country</td><td>4.67</td><td>state</td><td>3.89</td></tr><tr><td>democrats</td><td>4.43</td><td>folks</td><td>2.83</td></tr><tr><td>american</td><td>3.14</td><td>democrats</td><td>2.34</td></tr><tr><td>trump</td><td>3.06</td><td>senate</td><td>1.33</td></tr><tr><td>republicans</td><td>2.41</td><td>governor</td><td>1.28</td></tr><tr><td>vote</td><td>2.33</td><td>care</td><td>1.28</td></tr><tr><td>end</td><td>2.33</td><td>vote</td><td>1.21</td></tr><tr><td>work</td><td>1.85</td><td>health</td><td>1.17</td></tr><tr><td>america</td><td>1.85</td><td>birmingham</td><td>1.17</td></tr></tbody></table>
-    <h4>Most-named</h4>
-    <table><thead><tr><th>Tub — Name</th><th>Tub /1k</th><th>Jones — Name</th><th>Jones /1k</th></tr></thead><tbody><tr><td>Senate</td><td>5.71</td><td>Alabama</td><td>4.23</td></tr><tr><td>Democrats</td><td>4.67</td><td>Democrats</td><td>2.36</td></tr><tr><td>Trump</td><td>3.06</td><td>Senate</td><td>1.33</td></tr><tr><td>American people</td><td>2.66</td><td>Republicans</td><td>0.94</td></tr><tr><td>Republicans</td><td>2.41</td><td>Trump</td><td>0.67</td></tr><tr><td>House</td><td>1.13</td><td>Tuberville</td><td>0.54</td></tr><tr><td>Save America Act</td><td>1.13</td><td>House</td><td>0.52</td></tr><tr><td>Biden</td><td>0.89</td><td>American people</td><td>0.04</td></tr><tr><td>Schumer</td><td>0.56</td><td>Biden</td><td>0.02</td></tr><tr><td>Alabama</td><td>0.56</td><td>Roy Moore</td><td>0.02</td></tr></tbody></table>
+    <table><thead><tr><th>Tub — Term</th><th>Tub /1k</th><th>Jones — Term</th><th>Jones /1k</th></tr></thead><tbody><tr><td>senate</td><td>5.71</td><td>Alabama</td><td>4.23</td></tr><tr><td>country</td><td>4.67</td><td>state</td><td>3.89</td></tr><tr><td>Democrats</td><td>4.67</td><td>folks</td><td>2.83</td></tr><tr><td>american</td><td>3.14</td><td>Democrats</td><td>2.36</td></tr><tr><td>trump</td><td>3.06</td><td>senate</td><td>1.33</td></tr><tr><td>American people</td><td>2.66</td><td>governor</td><td>1.28</td></tr><tr><td>republicans</td><td>2.41</td><td>care</td><td>1.28</td></tr><tr><td>vote</td><td>2.33</td><td>vote</td><td>1.21</td></tr><tr><td>end</td><td>2.33</td><td>health</td><td>1.17</td></tr><tr><td>work</td><td>1.85</td><td>birmingham</td><td>1.17</td></tr></tbody></table>
   </details>
 </section>
 
   </main>
   <footer>
-    Charts use per-1,000-word rates. Jones word and name charts share Tuberville's y-axis scale for direct comparison.
+    Charts use per-1,000-word rates. Top-term charts combine substantive words and named entities; Jones shares Tuberville's y-axis scale.
   </footer>
 
-  <script id="chart-data" type="application/json">{"tubWords": [["senate", 5.71], ["country", 4.67], ["democrats", 4.43], ["american", 3.14], ["trump", 3.06], ["republicans", 2.41], ["vote", 2.33], ["end", 2.33], ["work", 1.85], ["america", 1.85]], "jonesWords": [["alabama", 4.07], ["state", 3.89], ["folks", 2.83], ["democrats", 2.34], ["senate", 1.33], ["governor", 1.28], ["care", 1.28], ["vote", 1.21], ["health", 1.17], ["birmingham", 1.17]], "tubNames": [["Senate", 5.71], ["Democrats", 4.67], ["Trump", 3.06], ["American people", 2.66], ["Republicans", 2.41], ["House", 1.13], ["Save America Act", 1.13], ["Biden", 0.89], ["Schumer", 0.56], ["Alabama", 0.56]], "jonesNames": [["Alabama", 4.23], ["Democrats", 2.36], ["Senate", 1.33], ["Republicans", 0.94], ["Trump", 0.67], ["Tuberville", 0.54], ["House", 0.52], ["American people", 0.04], ["Biden", 0.02], ["Roy Moore", 0.02]], "corpus": {"tubWords": 12429, "jonesWords": 44470, "tubVideos": 18, "jonesVideos": 10, "tubMedian": 716, "jonesMedian": 2439}}</script>
+  <script id="chart-data" type="application/json">{"tubTop": [["senate", 5.71], ["country", 4.67], ["Democrats", 4.67], ["american", 3.14], ["trump", 3.06], ["American people", 2.66], ["republicans", 2.41], ["vote", 2.33], ["end", 2.33], ["work", 1.85]], "jonesTop": [["Alabama", 4.23], ["state", 3.89], ["folks", 2.83], ["Democrats", 2.36], ["senate", 1.33], ["governor", 1.28], ["care", 1.28], ["vote", 1.21], ["health", 1.17], ["birmingham", 1.17]], "corpus": {"tubWords": 12429, "jonesWords": 44470, "tubVideos": 18, "jonesVideos": 10, "tubMedian": 716, "jonesMedian": 2439}}</script>
   <script>
     const DATA = JSON.parse(document.getElementById('chart-data').textContent);
     const TUB = '#b91c1c';
@@ -505,13 +493,10 @@
     }
 
     function renderCharts(block) {
-      const wordsMax = tubPairedScale(block.tubWords, block.jonesWords);
-      const namesMax = tubPairedScale(block.tubNames, block.jonesNames);
+      const topMax = tubPairedScale(block.tubTop, block.jonesTop);
 
-      verticalBar('compare-tub-words', block.tubWords, TUB_LIGHT, 'Tuberville', 'per 1,000 words', wordsMax);
-      verticalBar('compare-jones-words', block.jonesWords, JONES_LIGHT, 'Jones', 'per 1,000 words', wordsMax);
-      verticalBar('compare-tub-names', block.tubNames, TUB_LIGHT, 'Tuberville', 'per 1,000 words', namesMax);
-      verticalBar('compare-jones-names', block.jonesNames, JONES_LIGHT, 'Jones', 'per 1,000 words', namesMax);
+      verticalBar('compare-tub-top', block.tubTop, TUB_LIGHT, 'Tuberville', 'per 1,000 words', topMax);
+      verticalBar('compare-jones-top', block.jonesTop, JONES_LIGHT, 'Jones', 'per 1,000 words', topMax);
     }
 
     function groupedCount(id, labels, tubVals, jonesVals, yTitle) {
