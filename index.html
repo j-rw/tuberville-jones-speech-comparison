@@ -170,6 +170,22 @@
     .candidate-table.jones-table th {
       color: var(--jones);
     }
+    .candidate-table th:first-child,
+    .candidate-table td:first-child {
+      color: var(--muted);
+      font-weight: 700;
+      width: 2.75rem;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+    .candidate-table th:first-child {
+      color: var(--muted);
+    }
+    .candidate-table th:nth-child(3),
+    .candidate-table td:nth-child(3) {
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
     .legend-pills {
       display: flex;
       gap: 1rem;
