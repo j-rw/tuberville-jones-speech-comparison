@@ -185,7 +185,7 @@
   <h2>Speech comparison</h2>
 
   <h3>Topics — rate per 1,000 words</h3>
-  <p class="chart-note">Same topic taxonomy for both candidates; sorted by higher of the two rates. Tub and Jones share the same axis scale within each metric.</p>
+  <p class="chart-note">Same topic taxonomy for both candidates; sorted by higher of the two rates. Jones charts use Tuberville's axis scale within each metric so bar heights are directly comparable.</p>
   <div class="chart-wrap tall"><canvas id="compare-topics-rate"></canvas></div>
 
   <div class="chart-grid">
@@ -223,7 +223,7 @@
 
   </main>
   <footer>
-    Charts use per-1,000-word rates. Paired Tub/Jones charts share the same axis scale for glanceable comparison.
+    Charts use per-1,000-word rates. Jones word and name charts share Tuberville's y-axis scale for direct comparison.
   </footer>
 
   <script id="chart-data" type="application/json">{"topics": [{"topic": "Election integrity / SAVE Act", "tub": 9.9, "jones": 4.3, "tub_share": 83.3, "jones_share": 90.0, "sort": 9.9}, {"topic": "Alabama / governor race", "tub": 1.05, "jones": 7.49, "tub_share": 44.4, "jones_share": 100.0, "sort": 7.49}, {"topic": "Democrats / partisan conflict", "tub": 7.32, "jones": 3.1, "tub_share": 94.4, "jones_share": 100.0, "sort": 7.32}, {"topic": "Immigration / ICE / border", "tub": 4.43, "jones": 3.67, "tub_share": 83.3, "jones_share": 100.0, "sort": 4.43}, {"topic": "Trump / White House agenda", "tub": 4.02, "jones": 1.15, "tub_share": 88.9, "jones_share": 90.0, "sort": 4.02}, {"topic": "Government shutdown / DHS funding", "tub": 3.54, "jones": 0.31, "tub_share": 77.8, "jones_share": 70.0, "sort": 3.54}, {"topic": "Military / defense", "tub": 1.53, "jones": 0.16, "tub_share": 38.9, "jones_share": 40.0, "sort": 1.53}, {"topic": "DOJ / law & order", "tub": 1.13, "jones": 1.39, "tub_share": 44.4, "jones_share": 60.0, "sort": 1.39}, {"topic": "Iran / Middle East", "tub": 1.29, "jones": 0.0, "tub_share": 11.1, "jones_share": 0.0, "sort": 1.29}, {"topic": "Economy / spending", "tub": 1.29, "jones": 1.15, "tub_share": 38.9, "jones_share": 70.0, "sort": 1.29}], "tubWords": [["senate", 5.71], ["country", 4.67], ["democrats", 4.43], ["american", 3.14], ["trump", 3.06], ["republicans", 2.41], ["vote", 2.33], ["end", 2.33], ["work", 1.85], ["america", 1.85]], "jonesWords": [["alabama", 4.07], ["state", 3.89], ["folks", 2.83], ["democrats", 2.34], ["senate", 1.33], ["governor", 1.28], ["care", 1.28], ["vote", 1.21], ["health", 1.17], ["birmingham", 1.17]], "tubNames": [["Senate", 5.71], ["Democrats", 4.67], ["Trump", 3.06], ["American people", 2.66], ["Republicans", 2.41], ["House", 1.13], ["Save America Act", 1.13], ["Biden", 0.89], ["Schumer", 0.56], ["Alabama", 0.56]], "jonesNames": [["Alabama", 4.23], ["Democrats", 2.36], ["Senate", 1.33], ["Republicans", 0.94], ["Trump", 0.67], ["Tuberville", 0.54], ["House", 0.52], ["Doug Jones", 0.07], ["American people", 0.04], ["Biden", 0.02]], "corpus": {"tubWords": 12429, "jonesWords": 44470, "tubVideos": 18, "jonesVideos": 10, "tubMedian": 716, "jonesMedian": 2439}}</script>
@@ -247,6 +247,12 @@
 
     function maxRate(...lists) {
       return Math.max(0, ...lists.flat().map(([, v]) => v));
+    }
+
+    function tubPairedScale(tubItems, jonesItems) {
+      const peak = maxRate(tubItems) || maxRate(jonesItems);
+      if (peak <= 0) return 1;
+      return Math.ceil(peak);
     }
 
     function paddedMax(value) {
@@ -315,6 +321,7 @@
               max: yMax,
               title: { display: true, text: yTitle },
               grid: { color: 'rgba(0,0,0,0.06)' },
+              ticks: Number.isInteger(yMax) ? { stepSize: 1 } : {},
             },
             x: {
               grid: { display: false },
@@ -332,8 +339,8 @@
         topics.map(t => ['tub', t.tub]),
         topics.map(t => ['jones', t.jones]),
       ));
-      const wordsMax = paddedMax(maxRate(block.tubWords, block.jonesWords));
-      const namesMax = paddedMax(maxRate(block.tubNames, block.jonesNames));
+      const wordsMax = tubPairedScale(block.tubWords, block.jonesWords);
+      const namesMax = tubPairedScale(block.tubNames, block.jonesNames);
 
       hbar('compare-topics-rate', topicLabels, [
         { label: 'Tuberville', data: topics.map(t => t.tub), backgroundColor: TUB_LIGHT, borderRadius: 4 },
