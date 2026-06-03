@@ -7,31 +7,79 @@
   <meta name="description" content="Visual speech comparison of Tommy Tuberville and Doug Jones YouTube interviews, June 2025–present.">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <style>
+    @font-face {
+      font-family: "Helvetica Now Display";
+      src: url("fonts/HelveticaNowDisplay-Regular.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Helvetica Now Display";
+      src: url("fonts/HelveticaNowDisplay-Bd.otf") format("opentype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Helvetica Now Micro";
+      src: url("fonts/HelveticaNowMicro-Regular.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Helvetica Now Micro";
+      src: url("fonts/HelveticaNowMicro-Medium.otf") format("opentype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Helvetica Now Micro";
+      src: url("fonts/HelveticaNowMicro-Bold.otf") format("opentype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
     :root {
       --bg: #f7f5f0;
       --card: #ffffff;
       --text: #1c1c1c;
-      --muted: #5c5c5c;
+      --muted: #444444;
       --line: #ddd6c8;
       --tub: #b91c1c;
       --jones: #1d4ed8;
       --accent: #0f766e;
+      --font-display: "Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-micro: "Helvetica Now Micro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: var(--font-micro);
+      font-size: 16px;
+      font-weight: 400;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     header {
       background: linear-gradient(135deg, #111827, #1f2937);
       color: #fff;
       padding: 2.5rem 1.25rem;
     }
-    header h1 { margin: 0 0 0.5rem; font-size: clamp(1.6rem, 4vw, 2.4rem); }
-    header p { margin: 0.25rem 0; color: #d1d5db; max-width: 60rem; }
+    header h1 {
+      margin: 0 0 0.5rem;
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    header p { margin: 0.25rem 0; color: #d1d5db; max-width: 60rem; font-size: 1rem; }
     main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
     section {
       background: var(--card);
@@ -41,10 +89,30 @@
       margin-bottom: 1.5rem;
       box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
-    h2 { margin-top: 0; font-size: 1.35rem; }
-    h3 { margin: 1.5rem 0 0.75rem; font-size: 1.05rem; color: var(--accent); }
-    h4 { margin: 1rem 0 0.5rem; font-size: 0.95rem; }
-    .meta, .method, .chart-note { color: var(--muted); font-size: 0.95rem; }
+    h2 {
+      margin-top: 0;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    h3 {
+      margin: 1.5rem 0 0.75rem;
+      font-family: var(--font-micro);
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.3;
+    }
+    h4 {
+      margin: 1rem 0 0.5rem;
+      font-family: var(--font-micro);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .meta, .method, .chart-note { color: var(--muted); font-size: 0.9375rem; line-height: 1.5; }
     .stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -57,15 +125,22 @@
       border-radius: 8px;
       padding: 0.75rem;
     }
-    .stat span { display: block; font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
-    .stat strong { font-size: 1.25rem; }
+    .stat span {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .stat strong { font-size: 1.375rem; font-weight: 700; }
     .chart-wrap {
       position: relative;
       height: 280px;
       margin: 0.5rem 0 1.25rem;
     }
     .chart-wrap.tall { height: 360px; }
-    .chart-wrap.compare { height: 340px; }
+    .chart-wrap.compare { height: 400px; }
     .chart-wrap.short { height: 220px; }
     .chart-grid {
       display: grid;
@@ -105,8 +180,9 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      font-size: 0.9rem;
-      color: var(--muted);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: #e5e7eb;
     }
     .swatch {
       width: 14px;
@@ -130,25 +206,29 @@
     details.meta-section summary {
       cursor: pointer;
       color: var(--accent);
-      font-weight: bold;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      line-height: 1.4;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.92rem;
+      font-size: 0.9375rem;
       margin-bottom: 0.5rem;
     }
     th, td {
       border-bottom: 1px solid var(--line);
-      padding: 0.55rem 0.45rem;
+      padding: 0.65rem 0.5rem;
       text-align: left;
       vertical-align: top;
+      line-height: 1.35;
     }
     th {
       background: #faf8f4;
-      font-size: 0.78rem;
+      font-size: 0.8125rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
       color: var(--muted);
     }
     th:nth-child(1), td:nth-child(1) { color: var(--tub); }
@@ -156,7 +236,7 @@
     footer {
       text-align: center;
       color: var(--muted);
-      font-size: 0.85rem;
+      font-size: 0.875rem;
       padding: 1rem;
     }
     @media (max-width: 800px) {
@@ -272,8 +352,32 @@
     const TUB_LIGHT = 'rgba(185, 28, 28, 0.75)';
     const JONES_LIGHT = 'rgba(29, 78, 216, 0.75)';
 
-    Chart.defaults.font.family = 'Georgia, "Times New Roman", serif';
-    Chart.defaults.color = '#5c5c5c';
+    const FONT_MICRO = '"Helvetica Now Micro", "Helvetica Neue", Helvetica, Arial, sans-serif';
+    const FONT_DISPLAY = '"Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif';
+    const LABEL_COLOR = '#333333';
+
+    Chart.defaults.font.family = FONT_MICRO;
+    Chart.defaults.font.size = 13;
+    Chart.defaults.color = LABEL_COLOR;
+
+    const axisTitle = (text) => ({
+      display: true,
+      text,
+      color: LABEL_COLOR,
+      font: { family: FONT_MICRO, size: 13, weight: '500' },
+    });
+
+    const axisTicks = (size = 12) => ({
+      color: LABEL_COLOR,
+      font: { family: FONT_MICRO, size, weight: '500' },
+    });
+
+    const categoryTicks = () => ({
+      ...axisTicks(12),
+      maxRotation: 35,
+      minRotation: 35,
+      autoSkip: false,
+    });
 
     function sortDescPairs(items) {
       return [...items].sort((a, b) => b[1] - a[1]);
@@ -307,9 +411,12 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          layout: { padding: { bottom: 4, left: 2, right: 2 } },
           plugins: {
             legend: { display: false },
             tooltip: {
+              titleFont: { family: FONT_MICRO, size: 13, weight: '700' },
+              bodyFont: { family: FONT_MICRO, size: 13 },
               callbacks: {
                 label: (ctx) => `${ctx.parsed.y.toFixed(2)} /1k`,
               },
@@ -319,13 +426,16 @@
             y: {
               beginAtZero: true,
               max: yMax,
-              title: { display: true, text: yTitle },
+              title: axisTitle(yTitle),
               grid: { color: 'rgba(0,0,0,0.06)' },
-              ticks: Number.isInteger(yMax) ? { stepSize: 1 } : {},
+              ticks: {
+                ...axisTicks(12),
+                ...(Number.isInteger(yMax) ? { stepSize: 1 } : {}),
+              },
             },
             x: {
               grid: { display: false },
-              ticks: { maxRotation: 45, minRotation: 45, autoSkip: false, font: { size: 10 } },
+              ticks: categoryTicks(),
             },
           },
         },
@@ -355,9 +465,22 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: { legend: { position: 'bottom' } },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                color: LABEL_COLOR,
+                font: { family: FONT_MICRO, size: 13, weight: '500' },
+                padding: 16,
+              },
+            },
+          },
           scales: {
-            y: { beginAtZero: true, title: { display: !!yTitle, text: yTitle || '' } },
+            y: {
+              beginAtZero: true,
+              title: axisTitle(yTitle),
+              ticks: axisTicks(12),
+            },
           },
         },
       });
